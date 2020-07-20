@@ -23,6 +23,8 @@ public class EffectsUtility {
     protected float alpha;
     protected int expandBy;
     protected int rotation = 0;
+    protected int additionalX;
+    protected int additionalY;
     protected Color effectColor;
     protected Random rn = new Random();
     protected LinkedList<Double> particaleCosX = new LinkedList<>();
@@ -152,10 +154,20 @@ public class EffectsUtility {
         }
     }
     
-    public void setupShockwave() {
+        public void shockwaveRotateAroundPosition(int centerPosX, int centerPosY, int diameter) {
+        additionalX = (int) GameUtilites.newXFromAngle(centerPosX, rotation, diameter);
+        additionalY = (int) GameUtilites.newYFromAngle(centerPosY, rotation, diameter);
+        rotation++;
+        if (rotation == 360) {
+            rotation = 0;
+        }
+    }
+    
+    public void setupShockwave(int initalDistance) {
         intensity = 8;
-        wait = 50;
+        wait = 45;
         alpha = intensity * 0.1f;
+        distance = initalDistance;
         expandBy = 0;
         generateExplodeParticlePoints();
     }
@@ -163,16 +175,23 @@ public class EffectsUtility {
     public void shockwaveTick() {
         wait--;
         if (wait >= 30) {
-            expandBy = expandBy - 5;
-            intensity = 1;
+            expandBy = expandBy - 15;
+            intensity = 2;
+            distance = distance - 20;
         }
         if (wait < 20) {
-            expandBy = expandBy + 10;
+            expandBy = expandBy + 35;
+            
+            if(gameObject.width >= 150) {
+                expandBy = 0;
+                distance = distance + 10;
+            }
             intensity = 9;
         }
         if (wait > 0) {
             alpha = intensity * 0.1f;
         }
+        shockwaveRotateAroundPosition(gameObject.x, gameObject.y, distance);
         if (wait <= 0) {
             gameObject.visible = false;
         }
@@ -188,8 +207,13 @@ public class EffectsUtility {
                     AlphaComposite.SRC_OVER, alpha);
             g2d.setComposite(alcom);
             int keepCenter = expandBy / 2;
-            g2d.fillOval(x - keepCenter, y - keepCenter, gameObject.getHeight() + expandBy, gameObject.getWidth() + expandBy);
-
+            g2d.fillOval(gameObject.x - keepCenter, gameObject.y - keepCenter, gameObject.getHeight() + expandBy, gameObject.getWidth() + expandBy);
+            int rand = rn.nextInt(25 - 5 + 1) + 5;
+            for (int i = 1; i < particaleCosX.size(); i++) {
+                additionalX = GameUtilites.newRadialPointFromAngle(x, particaleCosX.get(i), distance) + rand;
+                additionalY = GameUtilites.newRadialPointFromAngle(y, particaleSinY.get(i), distance) + rand;
+                g2d.fillOval(additionalX - keepCenter, additionalY - keepCenter, 5, 5);
+            }
         }
     }
     
