@@ -41,8 +41,8 @@ public class EffectsUtility {
     }
     
     public void setupExplode() {
-    intensity = 8;
-    wait = 5;
+    intensity = 10;
+    wait = 20;
     distance = 10;
     alpha = intensity * 0.1f;
     expandBy = 0;
@@ -53,14 +53,15 @@ public class EffectsUtility {
     public void explodeTick() {
         wait--;
         int rand = rn.nextInt(1 - (-3) + 1) + (-3);
-        distance = distance + 4 + rand;
-        expandBy = expandBy + 3;
-        if (wait <= 0) {
-            intensity--;
-            alpha = intensity * 0.1f;
-            wait = 5;
+        distance = distance + 10 + rand;
+        expandBy = expandBy + 1;
+        alpha = intensity * 0.1f;
+        if (wait <= 15) {
+            
+            intensity = 2;
+
         }
-        if (intensity <= 0) {
+        if (wait <= 0) {
             gameObject.visible = false;
         }
     }
@@ -75,7 +76,8 @@ public class EffectsUtility {
                     AlphaComposite.SRC_OVER, alpha);
             g2d.setComposite(alcom);
             int keepCenter = expandBy/2;
-            g2d.fillOval(x - keepCenter, y - keepCenter, gameObject.getHeight() + expandBy, gameObject.getWidth() + expandBy);
+            //g2d.fillOval(x - keepCenter, y - keepCenter, gameObject.getHeight() + expandBy, gameObject.getWidth() + expandBy);
+            drawExplode(g2d, gameObject.getHeight(), expandBy, keepCenter);
             int rand = rn.nextInt(20 - 5 + 1) + 5;
             for (int i = 1; i < particaleCosX.size(); i++) {
                 int newX = (int) (x + particaleCosX.get(i) * distance + rand);
@@ -83,6 +85,14 @@ public class EffectsUtility {
                 g2d.fillOval(newX, newY, 15, 15);
             }
 
+        }
+    }
+    
+    private void drawExplode(Graphics2D g, int thickness, int diameter, int keepCenter) {
+        for (int i = 0; i < 360; i++) {
+            int newX = GameUtilites.newXFromAngle(x, i, diameter);
+            int newY = GameUtilites.newYFromAngle(y, i, diameter);
+            g.drawArc(newX - keepCenter, newY - keepCenter, gameObject.getHeight() + diameter, gameObject.getWidth() + diameter, 0, 360);
         }
     }
     
@@ -136,7 +146,6 @@ public class EffectsUtility {
             AlphaComposite alcom = AlphaComposite.getInstance(
                     AlphaComposite.SRC_OVER, alpha);
             g2d.setComposite(alcom);
-            //g2d.fillOval(x, y, 15, 15);
             int rand = rn.nextInt(15 - 5 + 1) + 5;
             for (int i = 1; i < particaleCosX.size(); i++) {
                 int newX = GameUtilites.newRadialPointFromAngle(x, particaleCosX.get(i), distance) + rand;
@@ -167,40 +176,42 @@ public class EffectsUtility {
     
     public void setupShockwave(int initalDistance) {
         intensity = 8;
-        wait = 45;
+        wait = 15;
         alpha = intensity * 0.1f;
         distance = initalDistance;
         expandBy = 0;
         generateExplodeParticlePoints();
     }
 
-           private void generateShockwaveParticlePoints() {
-        for (int i = 0; i < 360; i = i + 2) {
-            int rand = rn.nextInt(1 - (-3) + 1) + (-3);
-           double cosX = GameUtilites.newXAngle(i + rand);
-            double sinY = GameUtilites.newYAngle(i + rand);
-            particaleCosX.add(cosX);
-            particaleSinY.add(sinY);
+           
+
+           
+    private void drawShockwave(Graphics2D g, int thickness, int diameter, int keepCenter) {
+        for (int i = 0; i < 360; i++) {
+            int newX = GameUtilites.newXFromAngle(x, i, diameter);
+            int newY = GameUtilites.newYFromAngle(y, i, diameter);
+            g.drawArc(newX - keepCenter, newY - keepCenter, gameObject.getHeight() + diameter, gameObject.getWidth() + diameter, 0, 360);
         }
     }
     
+    
+    //awesome effect use on boss ability
+        private void bossShockwave(Graphics2D g, int thickness, int diameter, int keepCenter) {
+        for (int i = 0; i < 360; i++) {
+            int newX = GameUtilites.newXFromAngle(x, i, diameter);
+            int newY = GameUtilites.newYFromAngle(y, i, diameter);
+            g.drawRect(newX - keepCenter, newY - keepCenter, thickness, thickness);
+        }
+    }
+    
+    
     public void shockwaveTick() {
         wait--;
-        if (wait >= 30) {
+        if (wait >= 0) {
             int rand = rn.nextInt(2 - (-5) + 1) + (-5);
-            expandBy = expandBy - 15;
+            expandBy = expandBy - 10;
             intensity = 2;
-            distance = distance - 20 + rand;
-        }
-        if (wait < 20) {
-            expandBy = expandBy + 35;
-            
-            if(gameObject.width >= 150) {
-                int rand = rn.nextInt(5 - (-5) + 1) + (-5);
-                expandBy = 0 + rand;
-                System.out.println("random: " + rand);
-            }
-            intensity = 9;
+            distance = distance - 10 + rand;
         }
         if (wait > 0) {
             alpha = intensity * 0.1f;
@@ -219,22 +230,14 @@ public class EffectsUtility {
 
             AlphaComposite alcom = AlphaComposite.getInstance(
                     AlphaComposite.SRC_OVER, alpha);
-            AlphaComposite alcomB = AlphaComposite.getInstance(
-                    AlphaComposite.SRC_OVER, 10 * 0.1f);
             g2d.setComposite(alcom);
             int keepCenter = (gameObject.getHeight() + expandBy) / 2;
-            g2d.fillOval(x - keepCenter, y - keepCenter, gameObject.getHeight() + expandBy, gameObject.getWidth() + expandBy);
+            drawShockwave(g2d, gameObject.getHeight(), expandBy, keepCenter);
             int rand = rn.nextInt(50 - 20 + 1) + 20;
-            if(wait >= 32) {
-            g2d.setComposite(alcomB);
-            for (int i = 1; i < particaleCosX.size(); i++) {
-                additionalX = GameUtilites.newRadialPointFromAngle(x, particaleCosX.get(i), distance) + rand;
-                additionalY = GameUtilites.newRadialPointFromAngle(y, particaleSinY.get(i), distance) + rand;
-                g2d.fillOval(additionalX  - keepCenter, additionalY  - keepCenter, 2, 2);
-            }
+
             }
         }
     }
     
-    }
+ 
 

@@ -18,8 +18,8 @@ EffectsUtility effects;
     
     public ShockWave(int x, int y) {
         super(x, y, ID.Projectile);
-        height = 200;
-        width = 200;
+        height = 125;
+        width = 125;
         effects = new EffectsUtility(this, Color.MAGENTA);
         effects.setupShockwave(300);
     }
