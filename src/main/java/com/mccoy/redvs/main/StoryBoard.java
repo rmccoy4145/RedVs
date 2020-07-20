@@ -41,6 +41,7 @@ public class StoryBoard {
             Player player = new Player(100, 100);
             handler.addObject(player);
             handler.addObject(new Chaser(300, 300, player));
+            handler.addObject(new HUD( player));
         }
     }
     

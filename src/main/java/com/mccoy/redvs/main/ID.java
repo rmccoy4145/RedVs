@@ -15,6 +15,7 @@ public enum ID {
     Splash(),
     Menu(),
     Particles(),
+    HUD(),
     Projectile();
     
 }
