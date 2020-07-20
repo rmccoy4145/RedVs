@@ -16,6 +16,7 @@ public class Player extends GameObject{
     
     int health = 100;
     int basicAttackCoolDown = 200;
+    boolean executeBasicAttack = false;
     
     public Player(int x, int y) {
         super(x, y, ID.Player);
@@ -29,6 +30,7 @@ public class Player extends GameObject{
     @Override
     public void tick() {
         if(basicAttackCoolDown < 200) basicAttackCoolDown++;
+        if(executeBasicAttack) basicAttack();
         movement.updatePosition();
     }
 
@@ -38,12 +40,17 @@ public class Player extends GameObject{
         g.fillRect(x, y, height, width);
     }
 
-    public void basicAttack(){
+    public void setExecuteBasicAttack() {
         if(basicAttackCoolDown == 200) {
+        this.executeBasicAttack = true;
+        }
+    }
+
+    public void basicAttack(){
         Handler handler = Handler.getInstance();
         handler.addObject(new ShockWave(x, y));
         basicAttackCoolDown = 0;
-        }
+        executeBasicAttack = false;
     }
 
 }

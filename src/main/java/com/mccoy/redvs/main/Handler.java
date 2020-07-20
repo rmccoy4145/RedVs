@@ -22,14 +22,14 @@ public class Handler {
 
     }
 
-    public static Handler getInstance() {
+    public synchronized static Handler getInstance() {
         if (instance == null) {
             instance = new Handler();
         }
         return instance;
     }
     
-    public void tick() {
+    public synchronized void tick() {
         for (int i = 0; i < objects.size(); i++) {
             GameObject tempObject = objects.get(i);
             tempObject.tick();
@@ -37,7 +37,7 @@ public class Handler {
         }
     }
     
-    public void render(Graphics g){
+    public synchronized void render(Graphics g){
          for (int i = 0; i < objects.size(); i++) {
             GameObject tempObject = objects.get(i);
             tempObject.render(g);
@@ -45,7 +45,7 @@ public class Handler {
         }       
     }
     
-    public void cleanUp() {
+    public synchronized void cleanUp() {
         for (Iterator<GameObject> iterator = objects.iterator(); iterator.hasNext();) {
             GameObject next = iterator.next();
             if (!next.visible) {
@@ -57,11 +57,11 @@ public class Handler {
         }
     }
     
-    public void addObject(GameObject obj) {
+    public synchronized void addObject(GameObject obj) {
         objects.add(obj);
     }
     
-    public void removeObject(GameObject obj) {
+    public synchronized void removeObject(GameObject obj) {
         objects.remove(obj);
     }
     

@@ -86,6 +86,7 @@ public class Game extends Canvas implements Runnable {
     private void tick() { 
         StoryBoard.start();
         handler.tick();
+                handler.cleanUp();
     }
     
     private void render() {
@@ -104,7 +105,7 @@ public class Game extends Canvas implements Runnable {
         
         g.dispose();
         bs.show();
-        handler.cleanUp();
+
     }
 
     public static int positionClamp(int position, int min, int max) {

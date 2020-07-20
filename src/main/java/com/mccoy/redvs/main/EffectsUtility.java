@@ -42,7 +42,7 @@ public class EffectsUtility {
     
     public void setupExplode() {
     intensity = 10;
-    wait = 20;
+    wait = 25;
     distance = 10;
     alpha = intensity * 0.1f;
     expandBy = 0;
@@ -54,11 +54,11 @@ public class EffectsUtility {
         wait--;
         int rand = rn.nextInt(1 - (-3) + 1) + (-3);
         distance = distance + 10 + rand;
-        expandBy = expandBy + 1;
+        expandBy = expandBy + 3;
         alpha = intensity * 0.1f;
-        if (wait <= 15) {
+        if (wait <= 20) {
             
-            intensity = 2;
+            intensity = 1;
 
         }
         if (wait <= 0) {

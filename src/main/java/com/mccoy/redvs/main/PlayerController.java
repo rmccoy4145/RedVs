@@ -27,11 +27,18 @@ public class PlayerController {
             if (key == KeyEvent.VK_RIGHT) {
                 mb.moveRight();
             }
+        }
+    }
+    
+        public void playerActions(int key, GameObject obj) {
+        if (obj instanceof Player) {
+            Player player = (Player)obj;
             if (key == KeyEvent.VK_A) {
-                player.basicAttack();
+                player.setExecuteBasicAttack();
             }
         }
     }
+    
     
     public void stopPlayer(int key, GameObject obj) {
         if (obj instanceof Player) {

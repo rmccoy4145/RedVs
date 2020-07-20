@@ -7,6 +7,7 @@ package com.mccoy.redvs.main;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Iterator;
 
 /**
  *
@@ -22,16 +23,23 @@ public class KeyInput extends KeyAdapter{
     
     public void keyPressed(KeyEvent e) {
        int key = e.getKeyCode();
-        for (GameObject obj : handler.objects) {
-            playerController.movePlayer(key, obj);
+       
+        for (Iterator<GameObject> iterator = handler.objects.iterator(); iterator.hasNext();) {
+            GameObject next = iterator.next();
+            playerController.movePlayer(key, next);
+            playerController.playerActions(key, next);
+            
         }
- 
+       
     }
 
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
-        for (GameObject obj : handler.objects) {
-            playerController.stopPlayer(key, obj);
+        
+                for (Iterator<GameObject> iterator = handler.objects.iterator(); iterator.hasNext();) {
+            GameObject next = iterator.next();
+            playerController.stopPlayer(key, next);
+            
         }
     }
     
