@@ -6,6 +6,7 @@
 package com.mccoy.redvs.main;
 
 import java.awt.Graphics;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -45,14 +46,15 @@ public class Handler {
     }
     
     public void cleanUp() {
-            for (GameObject object : objects) {
-                if (!object.visible && object.id == ID.Particles) {
-                    removeObject(object);
-                    System.out.println("removed:" + object.id.toString());
-                    System.out.println("Container Size:" + objects.size());
-                }
-
+        for (Iterator<GameObject> iterator = objects.iterator(); iterator.hasNext();) {
+            GameObject next = iterator.next();
+            if (!next.visible) {
+                iterator.remove();
+                System.out.println("removed:" + next.id.toString());
+                System.out.println("Container Size:" + objects.size());
             }
+
+        }
     }
     
     public void addObject(GameObject obj) {

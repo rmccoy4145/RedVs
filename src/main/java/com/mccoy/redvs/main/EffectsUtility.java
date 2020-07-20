@@ -154,7 +154,7 @@ public class EffectsUtility {
     
     public void setupShockwave() {
         intensity = 8;
-        wait = 30;
+        wait = 50;
         alpha = intensity * 0.1f;
         expandBy = 0;
         generateExplodeParticlePoints();
@@ -162,11 +162,11 @@ public class EffectsUtility {
 
     public void shockwaveTick() {
         wait--;
-        if (wait >= 20) {
+        if (wait >= 30) {
             expandBy = expandBy - 5;
             intensity = 1;
         }
-        if (wait < 10) {
+        if (wait < 20) {
             expandBy = expandBy + 10;
             intensity = 9;
         }
