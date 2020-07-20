@@ -27,6 +27,9 @@ public class PlayerController {
             if (key == KeyEvent.VK_RIGHT) {
                 mb.moveRight();
             }
+            if (key == KeyEvent.VK_A) {
+                player.basicAttack();
+            }
         }
     }
     

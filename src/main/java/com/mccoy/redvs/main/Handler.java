@@ -45,14 +45,14 @@ public class Handler {
     }
     
     public void cleanUp() {
-        for (GameObject object : objects) {
-                if (!object.visible) {
+            for (GameObject object : objects) {
+                if (!object.visible && object.id == ID.Particles) {
                     removeObject(object);
-                    System.out.println("removed:"  + object.id.toString());
+                    System.out.println("removed:" + object.id.toString());
                     System.out.println("Container Size:" + objects.size());
                 }
- 
-        }
+
+            }
     }
     
     public void addObject(GameObject obj) {

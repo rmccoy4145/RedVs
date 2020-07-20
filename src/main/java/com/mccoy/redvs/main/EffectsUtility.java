@@ -143,12 +143,53 @@ public class EffectsUtility {
         }
     }
     
-    public void rotateAroundPosition(int centerPosX, int centerPosY) {
-        x = (int) GameUtilites.newXFromAngle(centerPosX, rotation, 50);
-        y = (int) GameUtilites.newYFromAngle(centerPosY, rotation, 50);
+    public void rotateAroundPosition(int centerPosX, int centerPosY, int diameter) {
+        x = (int) GameUtilites.newXFromAngle(centerPosX, rotation, diameter);
+        y = (int) GameUtilites.newYFromAngle(centerPosY, rotation, diameter);
         rotation++;
         if (rotation == 360) {
             rotation = 0;
+        }
+    }
+    
+    public void setupShockwave() {
+        intensity = 8;
+        wait = 30;
+        alpha = intensity * 0.1f;
+        expandBy = 0;
+        generateExplodeParticlePoints();
+    }
+
+    public void shockwaveTick() {
+        wait--;
+        if (wait >= 20) {
+            expandBy = expandBy - 5;
+            intensity = 1;
+        }
+        if (wait < 10) {
+            expandBy = expandBy + 10;
+            intensity = 9;
+        }
+        if (wait > 0) {
+            alpha = intensity * 0.1f;
+        }
+        if (wait <= 0) {
+            gameObject.visible = false;
+        }
+    }
+
+    public void shockwaveRender(Graphics g) {
+        if (gameObject.visible) {
+            Graphics2D g2d = (Graphics2D) g.create();
+
+            g2d.setPaint(effectColor);
+
+            AlphaComposite alcom = AlphaComposite.getInstance(
+                    AlphaComposite.SRC_OVER, alpha);
+            g2d.setComposite(alcom);
+            int keepCenter = expandBy / 2;
+            g2d.fillOval(x - keepCenter, y - keepCenter, gameObject.getHeight() + expandBy, gameObject.getWidth() + expandBy);
+
         }
     }
     
