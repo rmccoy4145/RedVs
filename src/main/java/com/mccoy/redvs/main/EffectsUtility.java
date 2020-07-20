@@ -52,7 +52,8 @@ public class EffectsUtility {
     
     public void explodeTick() {
         wait--;
-        distance = distance + 4;
+        int rand = rn.nextInt(1 - (-3) + 1) + (-3);
+        distance = distance + 4 + rand;
         expandBy = expandBy + 3;
         if (wait <= 0) {
             intensity--;
@@ -86,9 +87,10 @@ public class EffectsUtility {
     }
     
        private void generateExplodeParticlePoints() {
-        for (int i = 0; i < 20; i++) {
-           double cosX = GameUtilites.newXAngle(i);
-            double sinY = GameUtilites.newYAngle(i);
+        for (int i = 0; i < 360; i = i + 10) {
+            int rand = rn.nextInt(2 - (-2) + 1) + (-2);
+           double cosX = GameUtilites.newXAngle(i + rand);
+            double sinY = GameUtilites.newYAngle(i + rand);
             particaleCosX.add(cosX);
             particaleSinY.add(sinY);
         }
@@ -172,26 +174,38 @@ public class EffectsUtility {
         generateExplodeParticlePoints();
     }
 
+           private void generateShockwaveParticlePoints() {
+        for (int i = 0; i < 360; i = i + 2) {
+            int rand = rn.nextInt(1 - (-3) + 1) + (-3);
+           double cosX = GameUtilites.newXAngle(i + rand);
+            double sinY = GameUtilites.newYAngle(i + rand);
+            particaleCosX.add(cosX);
+            particaleSinY.add(sinY);
+        }
+    }
+    
     public void shockwaveTick() {
         wait--;
         if (wait >= 30) {
+            int rand = rn.nextInt(2 - (-5) + 1) + (-5);
             expandBy = expandBy - 15;
             intensity = 2;
-            distance = distance - 20;
+            distance = distance - 20 + rand;
         }
         if (wait < 20) {
             expandBy = expandBy + 35;
             
             if(gameObject.width >= 150) {
-                expandBy = 0;
-                distance = distance + 10;
+                int rand = rn.nextInt(5 - (-5) + 1) + (-5);
+                expandBy = 0 + rand;
+                System.out.println("random: " + rand);
             }
             intensity = 9;
         }
         if (wait > 0) {
             alpha = intensity * 0.1f;
         }
-        shockwaveRotateAroundPosition(gameObject.x, gameObject.y, distance);
+        shockwaveRotateAroundPosition(x, y, distance);
         if (wait <= 0) {
             gameObject.visible = false;
         }
@@ -205,14 +219,19 @@ public class EffectsUtility {
 
             AlphaComposite alcom = AlphaComposite.getInstance(
                     AlphaComposite.SRC_OVER, alpha);
+            AlphaComposite alcomB = AlphaComposite.getInstance(
+                    AlphaComposite.SRC_OVER, 10 * 0.1f);
             g2d.setComposite(alcom);
-            int keepCenter = expandBy / 2;
-            g2d.fillOval(gameObject.x - keepCenter, gameObject.y - keepCenter, gameObject.getHeight() + expandBy, gameObject.getWidth() + expandBy);
-            int rand = rn.nextInt(25 - 5 + 1) + 5;
+            int keepCenter = (gameObject.getHeight() + expandBy) / 2;
+            g2d.fillOval(x - keepCenter, y - keepCenter, gameObject.getHeight() + expandBy, gameObject.getWidth() + expandBy);
+            int rand = rn.nextInt(50 - 20 + 1) + 20;
+            if(wait >= 32) {
+            g2d.setComposite(alcomB);
             for (int i = 1; i < particaleCosX.size(); i++) {
                 additionalX = GameUtilites.newRadialPointFromAngle(x, particaleCosX.get(i), distance) + rand;
                 additionalY = GameUtilites.newRadialPointFromAngle(y, particaleSinY.get(i), distance) + rand;
-                g2d.fillOval(additionalX - keepCenter, additionalY - keepCenter, 5, 5);
+                g2d.fillOval(additionalX  - keepCenter, additionalY  - keepCenter, 2, 2);
+            }
             }
         }
     }

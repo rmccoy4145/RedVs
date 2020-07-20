@@ -40,22 +40,20 @@ public class GameUtilites {
     
 
     public static double newYAngle(double degree) {
-        return Math.sin(degree);
+        return Math.sin(Math.toDegrees(degree));
     }
 
     public static double newXAngle(double degree) {
-        return Math.cos(degree);
+        return Math.cos(Math.toDegrees(degree));
     }
     
     public static int newVelictyXFromAngle(double degree, int speed) {
         double velocity = Math.cos(Math.toRadians(degree)) * speed;
-        System.out.println("velocity X b4 cast " + velocity);
         return (int) (Math.round(velocity));
     }
 
     public static int newVelictyYFromAngle(double degree, int speed) {
         double velocity = Math.sin(Math.toRadians(degree)) * speed;
-        System.out.println("velocity Y b4 cast " + velocity);
         return (int) (Math.round(velocity));
     }
 

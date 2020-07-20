@@ -23,7 +23,7 @@ public class ChaserMovement extends BasicGOMovement{
         if (lastDegree == -999) {
             lastDegree = GameUtilites.angleToTwoPoints(playerX, playerY, x, y);
         }
-        //System.out.println(degree);
+ 
         if (!player.movement.isMoving()) {
             lastDegree = GameUtilites.angleToTwoPoints(playerX, playerY, x, y);
 

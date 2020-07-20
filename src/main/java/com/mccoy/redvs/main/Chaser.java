@@ -36,7 +36,7 @@ public class Chaser extends GameObject implements Enemy{
             cm.followPlayer(player);
             performAttack();
             cm.updatePosition();
-            System.out.println("Velx " + cm.velX + " velY " + cm.velY);
+         
         }
     }
 
