@@ -7,19 +7,25 @@ package com.mccoy.redvs.main;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.ImageObserver;
+
 
 /**
  *
  * @author rmccoy
  */
 public class SplashScreen extends GameObject{
-
+private Resources resources;
+Image titleScreen;
     protected int wait = 250;
     
     public SplashScreen() {
         super(0, 0, ID.Splash);
         height = Game.HEIGHT;
         width = Game.WIDTH;
+        resources = Resources.getInstance();
+        titleScreen = resources.titleImage;
     }
 
     
@@ -40,8 +46,7 @@ public class SplashScreen extends GameObject{
         } else {
             g.setColor(Color.BLUE);
             g.fillRect(x, y, width, height);
-            g.setColor(Color.RED);
-            g.drawString("RED vs", 300, 200);
+            g.drawImage(titleScreen, 0, 0, null);
         }
 
     }
