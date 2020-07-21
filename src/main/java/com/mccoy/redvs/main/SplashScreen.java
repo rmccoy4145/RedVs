@@ -21,7 +21,7 @@ Image titleScreen;
     protected int wait = 250;
     
     public SplashScreen() {
-        super(0, 0, ID.Splash);
+        super(0, 0, ID.SPLASH);
         height = Game.HEIGHT;
         width = Game.WIDTH;
         resources = Resources.getInstance();

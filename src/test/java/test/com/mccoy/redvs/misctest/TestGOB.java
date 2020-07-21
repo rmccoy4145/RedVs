@@ -21,7 +21,7 @@ public class TestGOB extends GameObject{
     int rotation = 1;
     int wait = 0;
     public TestGOB() {
-        super(0, 0, ID.Enemy);
+        super(0, 0, ID.ENEMY);
         x = pointToCircle[0];
         y = pointToCircle[1];
         height = 20;

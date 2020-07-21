@@ -17,7 +17,7 @@ public class Projectile extends GameObject{
     Player player;
     
     public Projectile(int x, int y, Player player) {
-        super(x, y, ID.Projectile);
+        super(x, y, ID.PROJECTILE);
         this.height = 30;
         this.width = 30;
         setWindowMaxPositions();

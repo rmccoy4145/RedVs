@@ -17,7 +17,7 @@ public class Explosion extends GameObject{
     protected Color explosionColor = Color.ORANGE;
     
     public Explosion(int x, int y) {
-        super(x, y, ID.Particles);
+        super(x, y, ID.PARTICLES);
         height = 40;
         width = 40;
         effects = new EffectsUtility(this, explosionColor);

@@ -19,14 +19,13 @@ public class Chaser extends GameObject implements Enemy{
     int wait = 0;
     
     public Chaser(int x, int y, Player player) {
-        super(x, y, ID.Enemy);  
+        super(x, y, ID.ENEMY);  
         height = 15; 
         width = 15;
         setWindowMaxPositions();
         this.player = player;
         setMovementBehavior(new ChaserMovement(this));
         movement.setSpeed(0);
-        this.handler = Handler.getInstance();
     }
 
     @Override
@@ -51,6 +50,7 @@ public class Chaser extends GameObject implements Enemy{
     public void performAttack() {
         this.wait++;
         if (wait == 300) {
+            Handler handler = Handler.getInstance();
             handler.addObject(new MuzzleFlash(x, y));
             handler.addObject(new Projectile(x, y, player));
             wait = 0;

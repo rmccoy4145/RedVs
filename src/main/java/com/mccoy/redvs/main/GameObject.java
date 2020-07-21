@@ -19,6 +19,7 @@ public abstract class GameObject {
     protected boolean visible = true;
     protected int windowMaxXPosition;
     protected int windowMaxYPosition;
+    protected HitBox hitbox;
 
     public abstract void tick();
     public abstract void render(Graphics g);
@@ -27,6 +28,7 @@ public abstract class GameObject {
         this.x = x;
         this.y = y;
         this.id = id;
+        hitbox = new HitBox(this);
     }
 
     public void setX(int x) {
@@ -74,6 +76,10 @@ public abstract class GameObject {
                 if (x == windowMaxXPosition || y == windowMaxYPosition || x == 0 || y == 0) {
             visible = false;
         }
+    }
+
+    public HitBox getHitbox() {
+        return hitbox;
     }
     
 }

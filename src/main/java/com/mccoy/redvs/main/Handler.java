@@ -33,6 +33,7 @@ public class Handler {
         for (int i = 0; i < objects.size(); i++) {
             GameObject tempObject = objects.get(i);
             tempObject.tick();
+            detectPlayerCollision(tempObject);
             
         }
     }
@@ -63,6 +64,19 @@ public class Handler {
     
     public synchronized void removeObject(GameObject obj) {
         objects.remove(obj);
+    }
+    
+    private synchronized void detectPlayerCollision(GameObject obj) {
+        if (obj instanceof Player) {
+            for (int i = 0; i < objects.size(); i++) {
+                GameObject tempObject = objects.get(i);
+                if (tempObject instanceof Player) {
+                    //Do nothing
+                } else {
+                    obj.getHitbox().rectIsCollision(tempObject.getHitbox());
+                }
+            }
+        }
     }
     
 }

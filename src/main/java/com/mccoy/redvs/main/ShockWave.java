@@ -17,7 +17,7 @@ public class ShockWave extends GameObject{
 EffectsUtility effects;
     
     public ShockWave(int x, int y) {
-        super(x, y, ID.Projectile);
+        super(x, y, ID.PLAYER_ATACK);
         height = 125;
         width = 125;
         effects = new EffectsUtility(this, Color.MAGENTA);

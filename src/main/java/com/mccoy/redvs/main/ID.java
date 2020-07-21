@@ -10,12 +10,14 @@ package com.mccoy.redvs.main;
  * @author rmccoy
  */
 public enum ID {
-    Player(),
-    Enemy(),
-    Splash(),
-    Menu(),
-    Particles(),
-    HUD(),
-    Projectile();
+    PLAYER,
+    ENEMY,
+    SPLASH,
+    MENU,
+    PARTICLES,
+    PLAYER_ATACK,
+    HUD,
+    PROJECTILE;
+    
     
 }

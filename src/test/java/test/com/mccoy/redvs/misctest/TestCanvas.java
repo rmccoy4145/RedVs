@@ -125,35 +125,49 @@ public class TestCanvas extends Canvas implements Runnable {
     
     private class TestGO extends GameObject{
 
-    int centerPosX = 200;
-    int centerPosY = 200;
+    int c1X = 200;
+    int c1Y = 200;
+    int c2X = 300;
+    int c2Y = 200;
+    int radius;
+    int radiusSq ;
+    int moveItBy = 1;
     int rotation = 0;
     int wait = 0;
     
     public TestGO() {
-        super(0, 0, ID.Enemy);
-        x = centerPosX;
-        y = centerPosY;
-        height = 20;
-        width = 20;
+        super(0, 0, ID.ENEMY);
+        height = 50;
+        width = height;
+        radius = width/2;
+        radiusSq = (int) Math.pow((radius + radius), 2);
+ 
     }
 
     @Override
     public void tick() {
+               int distanceBetween = (int) (Math.pow(((c1X + radius) - (c2X + radius)), 2) + Math.pow(((c1Y + radius) - (c2Y + radius)), 2));
+               
+               boolean touching = false;
+               if(distanceBetween == radiusSq || distanceBetween < radiusSq) touching = true;
+               if(touching) System.out.println("Touching");
+               else
+                   System.out.println("NOT Touching");
+        
+        c2X = c2X + moveItBy;
+        if(c2X == WIDTH) moveItBy = -1;
+        if(c2X == 0) moveItBy = 1;
+ 
 
-        x = (int) GameUtilites.newXFromAngle(centerPosX, rotation, 50);
-        y = (int) GameUtilites.newYFromAngle(centerPosY, rotation, 50);
-        rotation++;
-        if (rotation == 360) {
-            rotation = 0;
-        }
+ 
     }
 
     @Override
     public void render(Graphics g) {
         
         g.setColor(Color.red);
-       g.fillRect(x, y, width, height);
+       g.fillOval(c1X, c1Y, height, width);
+       g.fillOval(c2X, c2Y, height, width);
     }
     
 //    centerPosX = 200

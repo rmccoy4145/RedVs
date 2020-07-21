@@ -17,9 +17,11 @@ public class Player extends GameObject{
     int health = 100;
     int basicAttackCoolDown = 200;
     boolean executeBasicAttack = false;
+    int collisionCoolDown = 100;
+    boolean collision = false;
     
     public Player(int x, int y) {
-        super(x, y, ID.Player);
+        super(x, y, ID.PLAYER);
         height = 32;
         width = 32;
         setWindowMaxPositions();
@@ -32,6 +34,7 @@ public class Player extends GameObject{
         if(basicAttackCoolDown < 200) basicAttackCoolDown++;
         if(executeBasicAttack) basicAttack();
         movement.updatePosition();
+        if(collisionCoolDown < 100) collisionCoolDown++;
     }
 
     @Override
@@ -51,6 +54,28 @@ public class Player extends GameObject{
         handler.addObject(new ShockWave(x, y));
         basicAttackCoolDown = 0;
         executeBasicAttack = false;
+    }
+    
+    public void collisionDetected(ID hitboxType) {
+        if (collisionCoolDown == 100) {
+        switch(hitboxType) {
+            case ENEMY:  collision = true;
+            takeDMG();
+            collisionCoolDown = 0;
+                break;
+            case PROJECTILE:  collision = true;
+            takeDMG();
+            collisionCoolDown = 0;
+                    break;
+                default:
+                    break;
+
+            }
+        }
+    }
+
+    private void takeDMG() {
+        health -= 10;
     }
 
 }

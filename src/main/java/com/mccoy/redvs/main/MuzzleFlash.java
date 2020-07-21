@@ -18,7 +18,7 @@ public class MuzzleFlash extends GameObject {
     protected Color flashColor = Color.YELLOW;
 
     public MuzzleFlash(int x, int y) {
-        super(x, y, ID.Particles);
+        super(x, y, ID.PARTICLES);
         height = 2;
         width = 2;
         effects = new EffectsUtility(this, flashColor);
