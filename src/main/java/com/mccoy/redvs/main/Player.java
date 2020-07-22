@@ -75,6 +75,7 @@ public class Player extends GameObject{
     }
 
     private void takeDMG() {
+        SoundHandler.dmgSound();
         health -= 10;
     }
 

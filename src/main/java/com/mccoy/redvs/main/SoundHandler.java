@@ -5,7 +5,6 @@
  */
 package com.mccoy.redvs.main;
 
-import java.io.File;
 import java.io.InputStream;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -16,11 +15,10 @@ import javax.sound.sampled.Clip;
  * @author rmccoy
  */
 public class SoundHandler {
-    private static String DMG_FILENAME = "dmgSound.wav";
-    private static InputStream dmgSound = SoundHandler.class.getResourceAsStream(DMG_FILENAME);
+    private static Resources resources = Resources.getInstance();
     
     public static void dmgSound() {
-        playSound(dmgSound);
+        playSound(resources.DMG_SOUND);
     }
     
     public static void playSound(InputStream is) {
@@ -28,6 +26,7 @@ public class SoundHandler {
         AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(is);
         Clip clip = AudioSystem.getClip();
         clip.open(audioInputStream);
+        clip.setFramePosition(0);
         clip.start();
     } catch(Exception ex) {
         System.out.println("Error with playing sound.");

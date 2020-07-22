@@ -17,7 +17,12 @@ import javax.imageio.ImageIO;
  * @author rmccoy
  */
 public class Resources {
+
+   private static String DMG_FILENAME = "dmg.wav";
+   private static String TITLESCREEN_FILENAME = "REDvs_Title.jpg";
    Image titleImage;
+   InputStream DMG_SOUND;
+    
 private static Resources instance;
 
        public static Resources getInstance() {
@@ -29,14 +34,15 @@ private static Resources instance;
    
     private Resources() {
        try {
-           titleImage = ImageIO.read(Resources.class.getClassLoader().getResourceAsStream("REDvs_Title.jpg"));
+           DMG_SOUND = Resources.class.getClassLoader().getResourceAsStream(DMG_FILENAME);
+           titleImage = ImageIO.read(Resources.class.getClassLoader().getResourceAsStream(TITLESCREEN_FILENAME));
        } catch (IOException ex) {
            Logger.getLogger(Resources.class.getName()).log(Level.SEVERE, null, ex);
        }
     }
    
    private void resourceCheck() {
-               if ( titleImage == null )
+               if ( titleImage == null || DMG_SOUND == null )
                try {
                    throw new Exception("resource not found: ");
                } catch (Exception ex) {
