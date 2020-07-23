@@ -33,8 +33,9 @@ public class Player extends GameObject{
     public void tick() {
         if(basicAttackCoolDown < 200) basicAttackCoolDown++;
         if(executeBasicAttack) basicAttack();
-        movement.updatePosition();
         if(collisionCoolDown < 100) collisionCoolDown++;
+        movement.updatePosition();
+        death();
     }
 
     @Override
@@ -77,6 +78,10 @@ public class Player extends GameObject{
     private void takeDMG() {
         SoundHandler.dmgSound();
         health -= 10;
+    }
+    
+    private void death() {
+        if (health <= 0) SoundHandler.deathSound();
     }
 
 }

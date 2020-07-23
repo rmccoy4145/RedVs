@@ -8,6 +8,7 @@ package com.mccoy.redvs.main;
 import java.awt.Image;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -19,9 +20,11 @@ import javax.imageio.ImageIO;
 public class Resources {
 
    private static String DMG_FILENAME = "dmg.wav";
+   private static String DEATH_FILENAME = "death.wav";
    private static String TITLESCREEN_FILENAME = "REDvs_Title.jpg";
    Image titleImage;
-   InputStream DMG_SOUND;
+   URL DMG_SOUND;
+   URL DEATH_SOUND;
     
 private static Resources instance;
 
@@ -34,7 +37,8 @@ private static Resources instance;
    
     private Resources() {
        try {
-           DMG_SOUND = Resources.class.getClassLoader().getResourceAsStream(DMG_FILENAME);
+           DMG_SOUND = Resources.class.getClassLoader().getResource(DMG_FILENAME);
+           DEATH_SOUND = Resources.class.getClassLoader().getResource(DEATH_FILENAME);
            titleImage = ImageIO.read(Resources.class.getClassLoader().getResourceAsStream(TITLESCREEN_FILENAME));
        } catch (IOException ex) {
            Logger.getLogger(Resources.class.getName()).log(Level.SEVERE, null, ex);
