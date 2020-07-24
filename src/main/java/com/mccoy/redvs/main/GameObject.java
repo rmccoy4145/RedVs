@@ -20,6 +20,8 @@ public abstract class GameObject {
     protected int windowMaxXPosition;
     protected int windowMaxYPosition;
     protected HitBox hitbox;
+    int collisionCoolDown = 100;
+    boolean collision = false;
 
     public abstract void tick();
     public abstract void render(Graphics g);

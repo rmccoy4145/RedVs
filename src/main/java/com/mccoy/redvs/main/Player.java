@@ -12,13 +12,12 @@ import java.awt.Graphics;
  *
  * @author rmccoy
  */
-public class Player extends GameObject{
+public class Player extends GameObject implements Alive,Collidable{
     
     int health = 100;
     int basicAttackCoolDown = 200;
     boolean executeBasicAttack = false;
-    int collisionCoolDown = 100;
-    boolean collision = false;
+    boolean gameover = false;
     
     public Player(int x, int y) {
         super(x, y, ID.PLAYER);
@@ -31,6 +30,7 @@ public class Player extends GameObject{
 
     @Override
     public void tick() {
+        if(gameover) visible = false;
         if(basicAttackCoolDown < 200) basicAttackCoolDown++;
         if(executeBasicAttack) basicAttack();
         if(collisionCoolDown < 100) collisionCoolDown++;
@@ -75,13 +75,17 @@ public class Player extends GameObject{
         }
     }
 
-    private void takeDMG() {
+    public void takeDMG() {
         SoundHandler.dmgSound();
         health -= 10;
     }
     
-    private void death() {
-        if (health <= 0) SoundHandler.deathSound();
+    public void death() {
+        if (health <= 0) {
+            SoundHandler.deathSound();
+            gameover = true;
+        }
+
     }
 
 }

@@ -12,11 +12,12 @@ import java.awt.Graphics;
  *
  * @author rmccoy
  */
-public class Chaser extends GameObject implements Enemy{
+public class Chaser extends GameObject implements Enemy, Alive, Collidable{
 
     Player player;
     Handler handler;
     int wait = 0;
+    int health = 50;
     
     public Chaser(int x, int y, Player player) {
         super(x, y, ID.ENEMY);  
@@ -26,6 +27,7 @@ public class Chaser extends GameObject implements Enemy{
         this.player = player;
         setMovementBehavior(new ChaserMovement(this));
         movement.setSpeed(0);
+        collisionCoolDown = 50;
     }
 
     @Override
@@ -35,6 +37,8 @@ public class Chaser extends GameObject implements Enemy{
             cm.followPlayer(player);
             performAttack();
             cm.updatePosition();
+            if(collisionCoolDown < 50) collisionCoolDown++;
+            death();
          
         }
     }
@@ -54,6 +58,31 @@ public class Chaser extends GameObject implements Enemy{
             handler.addObject(new MuzzleFlash(x, y));
             handler.addObject(new Projectile(x, y, player));
             wait = 0;
+        }
+    }
+    
+    public void takeDMG() {
+        health += 10;
+        System.out.println("Chaser health: " + health);
+    }
+
+    public void death() {
+        if (health <= 0) {
+            //SoundHandler.deathSound();
+            visible = false;
+        }
+    }
+        public void collisionDetected(ID hitboxType) {
+        if (collisionCoolDown == 50) {
+        switch(hitboxType) {
+            case PLAYER_ATACK:  collision = true;
+            takeDMG();
+            collisionCoolDown = 0;
+                break;
+                default:
+                    break;
+
+            }
         }
     }
     

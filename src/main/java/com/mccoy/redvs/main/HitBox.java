@@ -43,9 +43,9 @@ public class HitBox {
         setHitBox();
         hitBoxToCheck.setHitBox();
         if(boxRect.intersects(hitBoxToCheck.getBoxRect())) {
-            if(gameObject instanceof Player) {
-                Player player = (Player) gameObject;
-                player.collisionDetected(hitBoxToCheck.getHitBoxType());
+            if(gameObject instanceof Collidable) {
+                Collidable go = (Collidable) gameObject;
+                go.collisionDetected(hitBoxToCheck.getHitBoxType());
             }
         }     
     }
