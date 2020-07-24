@@ -20,7 +20,7 @@ public class Chaser extends GameObject implements Enemy, Alive, Collidable{
     int health = 50;
     
     public Chaser(int x, int y, Player player) {
-        super(x, y, ID.ENEMY);  
+        super(x, y, ID.ENEMY);
         height = 15; 
         width = 15;
         setWindowMaxPositions();
@@ -62,7 +62,7 @@ public class Chaser extends GameObject implements Enemy, Alive, Collidable{
     }
     
     public void takeDMG() {
-        health += 10;
+        health += -10;
         System.out.println("Chaser health: " + health);
     }
 
