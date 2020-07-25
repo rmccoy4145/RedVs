@@ -17,30 +17,44 @@ public class KeyInput extends KeyAdapter{
 
     private Handler handler;
     private PlayerController playerController = new PlayerController();
+    private StartMenuController startMenuController = new StartMenuController();
     public KeyInput(Handler handler) {
         this.handler = handler;
     }
     
     public void keyPressed(KeyEvent e) {
-       int key = e.getKeyCode();
-       
-        for (Iterator<GameObject> iterator = handler.objects.iterator(); iterator.hasNext();) {
-            GameObject next = iterator.next();
-            playerController.movePlayer(key, next);
-            playerController.playerActions(key, next);
-            
+        int key = e.getKeyCode();
+        if (handler.playing) {
+            for (Iterator<GameObject> iterator = handler.objects.iterator(); iterator.hasNext();) {
+                GameObject next = iterator.next();
+                playerController.movePlayer(key, next);
+                playerController.playerActions(key, next);
+
+            }
+
         }
-       
+        if (handler.startMenu) {
+            for (Iterator<GameObject> iterator = handler.objects.iterator(); iterator.hasNext();) {
+                GameObject next = iterator.next();
+                startMenuController.navigation(key, next);
+                startMenuController.menuActions(key, next);
+            }
+
+        }
     }
+       
+    
 
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
-        
-                for (Iterator<GameObject> iterator = handler.objects.iterator(); iterator.hasNext();) {
-            GameObject next = iterator.next();
-            playerController.stopPlayer(key, next);
-            
+        if (handler.playing) {
+            for (Iterator<GameObject> iterator = handler.objects.iterator(); iterator.hasNext();) {
+                GameObject next = iterator.next();
+                playerController.stopPlayer(key, next);
+
+            }
         }
+
     }
     
     

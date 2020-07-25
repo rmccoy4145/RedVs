@@ -15,6 +15,8 @@ import java.util.LinkedList;
  */
 public class Handler {
     LinkedList<GameObject> objects = new LinkedList<>();
+    boolean playing = false;
+    boolean startMenu = true;
     
     private static Handler instance;
     
@@ -50,8 +52,9 @@ public class Handler {
         for (Iterator<GameObject> iterator = objects.iterator(); iterator.hasNext();) {
             GameObject next = iterator.next();
             if (!next.visible) {
+
+                System.out.println("removing:" + next.id.toString());
                 iterator.remove();
-                System.out.println("removed:" + next.id.toString());
                 System.out.println("Container Size:" + objects.size());
             }
 
