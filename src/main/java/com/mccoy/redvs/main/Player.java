@@ -84,6 +84,8 @@ public class Player extends GameObject implements Alive,Collidable{
         if (health <= 0) {
             SoundHandler.deathSound();
             gameover = true;
+            Handler handler = Handler.getInstance();
+            handler.addObject(new GameOver());
         }
 
     }

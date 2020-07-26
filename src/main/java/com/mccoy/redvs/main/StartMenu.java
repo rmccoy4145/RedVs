@@ -14,8 +14,8 @@ import java.awt.Image;
  * @author rmccoy
  */
 public class StartMenu extends GameObject{
-boolean startGame = true;
-boolean exitGame = false;
+boolean startGameOption;
+boolean exitGameOption;
 boolean proceed = false;
 boolean shutDown = false;
 private Resources resources;
@@ -23,12 +23,12 @@ Image titleScreen;
 int wait = 20;
 
     public StartMenu() {
-        super(0, 0, null);
+        super(0, 0, ID.MENU);
     }
 
     public void startGame() {
-        startGame = true;
-        exitGame = false;
+        startGameOption = true;
+        exitGameOption = false;
                 height = Game.HEIGHT;
         width = Game.WIDTH;
         resources = Resources.getInstance();
@@ -36,13 +36,13 @@ int wait = 20;
     }
     
     public void exitGame() {
-        startGame = false;
-        exitGame = true;
+        startGameOption = false;
+        exitGameOption = true;
     }
     
     public void select() {
-        if(startGame) proceed();
-        if(exitGame) shutdown();
+        if(startGameOption) proceed();
+        if(exitGameOption) shutdown();
     }
 
     public void proceed() {
@@ -64,28 +64,27 @@ int wait = 20;
     
     @Override
     public void tick() {
-        if(proceed) wait--;
-        if(wait <= 0) visible = false;
+        if(proceed) visible = false;
+        if(shutDown) System.exit(0);
+//        if(proceed) wait--;
+//        if(wait <= 0) visible = false;
         
     }
 
     @Override
     public void render(Graphics g) {
-        if(visible) {
-                    g.setColor(Color.BLUE);
-            g.fillRect(0, 0, width, height);
-        g.drawImage(titleScreen, 0, 0, null);
+        g.clearRect(x, y, width, height);
+        g.drawImage(titleScreen, x, y, null);
 
-        if (startGame) {
-
+        if (startGameOption) {
+            g.drawImage(titleScreen, x, y, null);
             g.setColor(Color.GREEN);
-            g.drawString("Start Game", 120, 345);
+            g.drawString("Start Game", 290, 345);
         }
-        if (exitGame) {
-            g.drawImage(titleScreen, 0, 0, null);
+        if (exitGameOption) {
+            g.drawImage(titleScreen, x, y, null);
             g.setColor(Color.RED);
-            g.drawString("Exit Game", 120, 345);
-        }
+            g.drawString("Exit Game", 290, 345);
         }
 
     }

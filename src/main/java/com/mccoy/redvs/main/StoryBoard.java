@@ -30,6 +30,7 @@ public class StoryBoard {
         Handler handler = Handler.getInstance();
         SplashScreen ss = new SplashScreen();
             handler.addObject(ss);
+            System.out.println("Added " + ss.id.toString());
         }
         if (!splashScreenComplete) {
             Handler handler = Handler.getInstance();
@@ -45,6 +46,7 @@ public class StoryBoard {
         Handler handler = Handler.getInstance();
         StartMenu startMenu = new StartMenu();
         handler.addObject(startMenu);
+            System.out.println("Added " + startMenu.id.toString());
         executeStartMenu = true;
         }
                 if (executeStartMenu ) {

@@ -40,13 +40,10 @@ Image titleScreen;
 
     @Override
     public void render(Graphics g) {
-        if (!visible) {
-            g.clearRect(x, y, width, height);
-        } else {
-            g.setColor(Color.BLUE);
-            g.fillRect(x, y, width, height);
-            g.drawImage(titleScreen, 0, 0, null);
-        }
+
+        g.setColor(Color.BLUE);
+        g.fillRect(x, y, width, height);
+        g.drawImage(titleScreen, 0, 0, null);
 
     }
     

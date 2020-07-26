@@ -17,6 +17,7 @@ public enum ID {
     PARTICLES,
     PLAYER_ATACK,
     HUD,
+    GAMEOVER,
     PROJECTILE;
     
     
