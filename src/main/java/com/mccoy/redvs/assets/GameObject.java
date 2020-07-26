@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mccoy.redvs.main;
+package com.mccoy.redvs.assets;
 
+import com.mccoy.redvs.main.Game;
+import com.mccoy.redvs.assetmovement.MoveBehavior;
 import java.awt.Graphics;
 
 /**
@@ -14,9 +16,9 @@ import java.awt.Graphics;
 public abstract class GameObject {
     
     protected int x, y, height, width;
-    protected ID id;
-    protected MoveBehavior movement;
-    protected boolean visible = true;
+    public ID id;
+    public MoveBehavior movement;
+    public boolean visible = true;
     protected int windowMaxXPosition;
     protected int windowMaxYPosition;
     protected HitBox hitbox;
@@ -74,6 +76,15 @@ public abstract class GameObject {
         this.windowMaxYPosition = Game.HEIGHT - (height * 2 - ((int) (height * 0.15)));
     }
 
+    public int getWindowMaxXPosition() {
+        return windowMaxXPosition;
+    }
+
+    public int getWindowMaxYPosition() {
+        return windowMaxYPosition;
+    }
+
+    
     public void ifOffScreen() {
                 if (x == windowMaxXPosition || y == windowMaxYPosition || x == 0 || y == 0) {
             visible = false;

@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mccoy.redvs.main;
+package com.mccoy.redvs.utilities;
 
+import com.mccoy.redvs.utilities.GameUtilites;
+import com.mccoy.redvs.assets.GameObject;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;

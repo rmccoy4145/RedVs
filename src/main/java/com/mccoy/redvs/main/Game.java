@@ -5,6 +5,7 @@
  */
 package com.mccoy.redvs.main;
 
+import com.mccoy.redvs.controllers.KeyInput;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;

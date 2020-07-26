@@ -3,7 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mccoy.redvs.main;
+package com.mccoy.redvs.assetmovement;
+
+import com.mccoy.redvs.assetmovement.BasicGOMovement;
+import com.mccoy.redvs.assets.Player;
+import com.mccoy.redvs.assets.GameObject;
+import com.mccoy.redvs.utilities.GameUtilites;
 
 /**
  *

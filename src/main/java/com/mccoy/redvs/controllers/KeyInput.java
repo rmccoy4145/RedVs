@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mccoy.redvs.main;
+package com.mccoy.redvs.controllers;
 
+import com.mccoy.redvs.controllers.StartMenuController;
+import com.mccoy.redvs.controllers.PlayerController;
+import com.mccoy.redvs.assets.GameObject;
+import com.mccoy.redvs.main.Handler;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Iterator;

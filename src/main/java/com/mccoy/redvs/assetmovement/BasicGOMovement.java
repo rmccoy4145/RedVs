@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mccoy.redvs.main;
+package com.mccoy.redvs.assetmovement;
+
+import com.mccoy.redvs.assets.GameObject;
+import com.mccoy.redvs.main.Game;
 
 /**
  *
@@ -100,7 +103,7 @@ public class BasicGOMovement implements MoveBehavior {
         x += velX;
         y += velY;
 
-        gameObject.setX(Game.positionClamp(x, 0, gameObject.windowMaxXPosition));
-        gameObject.setY(Game.positionClamp(y, 0, gameObject.windowMaxYPosition));
+        gameObject.setX(Game.positionClamp(x, 0, gameObject.getWindowMaxXPosition()));
+        gameObject.setY(Game.positionClamp(y, 0, gameObject.getWindowMaxYPosition()));
     }
 }

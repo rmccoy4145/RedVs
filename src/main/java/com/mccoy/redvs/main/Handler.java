@@ -5,6 +5,8 @@
  */
 package com.mccoy.redvs.main;
 
+import com.mccoy.redvs.assets.Collidable;
+import com.mccoy.redvs.assets.GameObject;
 import java.awt.Graphics;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -14,9 +16,9 @@ import java.util.LinkedList;
  * @author rmccoy
  */
 public class Handler {
-    LinkedList<GameObject> objects = new LinkedList<>();
-    boolean playing = false;
-    boolean startMenu = true;
+    public LinkedList<GameObject> objects = new LinkedList<>();
+    public boolean playing = false;
+    public boolean startMenu = true;
     
     private static Handler instance;
     

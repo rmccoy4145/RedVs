@@ -5,11 +5,11 @@
  */
 package test.com.mccoy.redvs.misctest;
 
-import com.mccoy.redvs.main.GameObject;
-import com.mccoy.redvs.main.GameUtilites;
+import com.mccoy.redvs.assets.GameObject;
+import com.mccoy.redvs.utilities.GameUtilites;
 import com.mccoy.redvs.main.Handler;
-import com.mccoy.redvs.main.ID;
-import com.mccoy.redvs.main.KeyInput;
+import com.mccoy.redvs.assets.ID;
+import com.mccoy.redvs.controllers.KeyInput;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;

@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mccoy.redvs.main;
+package com.mccoy.redvs.resources;
 
 import java.awt.Image;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +21,7 @@ public class Resources {
    private static String DMG_FILENAME = "dmg.wav";
    private static String DEATH_FILENAME = "death.wav";
    private static String TITLESCREEN_FILENAME = "REDvs_Title.jpg";
-   Image titleImage;
+   public Image titleImage;
    URL DMG_SOUND;
    URL DEATH_SOUND;
     

@@ -3,12 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mccoy.redvs.main;
+package com.mccoy.redvs.assets;
 
 /**
  *
  * @author rmccoy
  */
-public interface Collidable {
-        void collisionDetected(ID hitboxType);
+public enum ID {
+    PLAYER,
+    ENEMY,
+    SPLASH,
+    MENU,
+    PARTICLES,
+    PLAYER_ATACK,
+    HUD,
+    GAMEOVER,
+    PROJECTILE;
+    
+    
 }

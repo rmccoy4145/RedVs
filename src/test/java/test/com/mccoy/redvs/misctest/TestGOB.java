@@ -5,9 +5,9 @@
  */
 package test.com.mccoy.redvs.misctest;
 
-import com.mccoy.redvs.main.GameObject;
-import com.mccoy.redvs.main.GameUtilites;
-import com.mccoy.redvs.main.ID;
+import com.mccoy.redvs.assets.GameObject;
+import com.mccoy.redvs.utilities.GameUtilites;
+import com.mccoy.redvs.assets.ID;
 import java.awt.Color;
 import java.awt.Graphics;
 

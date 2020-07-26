@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mccoy.redvs.main;
+package com.mccoy.redvs.assets;
 
+import com.mccoy.redvs.assets.Player;
+import com.mccoy.redvs.assets.GameObject;
+import com.mccoy.redvs.assetmovement.ChaserMovement;
+import com.mccoy.redvs.main.Handler;
 import java.awt.Color;
 import java.awt.Graphics;
 
