@@ -27,7 +27,7 @@ public class Projectile extends GameObject{
         setWindowMaxPositions();
         this.player = player;
         setMovementBehavior(new ChaserMovement(this));
-        movement.setSpeed(3);
+        movement.setSpeed(4);
         trackPlayer();
     }
 

@@ -11,6 +11,7 @@ import com.mccoy.redvs.assetmovement.ChaserMovement;
 import com.mccoy.redvs.main.Handler;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Random;
 
 /**
  *
@@ -20,8 +21,11 @@ public class Chaser extends GameObject implements Enemy, Alive, Collidable{
 
     Player player;
     Handler handler;
-    int wait = 0;
+    int wait = 300;
     int health = 50;
+    protected Random rn = new Random();
+    int followMechanic = 50;
+    int followCoolDown = rn.nextInt(200 - 50 + 1) + 50;
     
     public Chaser(int x, int y, Player player) {
         super(x, y, ID.ENEMY);
@@ -30,7 +34,7 @@ public class Chaser extends GameObject implements Enemy, Alive, Collidable{
         setWindowMaxPositions();
         this.player = player;
         setMovementBehavior(new ChaserMovement(this));
-        movement.setSpeed(0);
+        movement.setSpeed(2);
         collisionCoolDown = 50;
     }
 
@@ -38,7 +42,7 @@ public class Chaser extends GameObject implements Enemy, Alive, Collidable{
     public void tick() {
         if (movement instanceof ChaserMovement) {
             ChaserMovement cm = (ChaserMovement) movement;
-            cm.followPlayer(player);
+            AI(cm);
             performAttack();
             cm.updatePosition();
             if(collisionCoolDown < 50) collisionCoolDown++;
@@ -56,12 +60,12 @@ public class Chaser extends GameObject implements Enemy, Alive, Collidable{
 
     @Override
     public void performAttack() {
-        this.wait++;
-        if (wait == 300) {
+        this.wait--;
+        if (wait == 0) {
             Handler handler = Handler.getInstance();
             handler.addObject(new MuzzleFlash(x, y));
             handler.addObject(new Projectile(x, y, player));
-            wait = 0;
+            wait = rn.nextInt(300 - 100 + 1) + 100;
         }
     }
     
@@ -88,6 +92,19 @@ public class Chaser extends GameObject implements Enemy, Alive, Collidable{
 
             }
         }
+    }
+        
+    private void AI(ChaserMovement cm) {
+        if (followMechanic <= 50) {
+            cm.followPlayer(player);
+        }
+        if(followCoolDown <= 0) {
+            followMechanic = 200;
+            followCoolDown = rn.nextInt(600 - 200 + 1) + 200;
+            System.out.println("followCoolDown: " + followCoolDown);
+        }
+        followCoolDown--;
+        followMechanic--;
     }
     
     

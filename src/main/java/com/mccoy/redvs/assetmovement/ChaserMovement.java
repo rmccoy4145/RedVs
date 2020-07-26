@@ -34,8 +34,8 @@ public class ChaserMovement extends BasicGOMovement{
 
         }
 
-        setVelX(GameUtilites.newVelictyXFromAngle(lastDegree, 3));
-        setVelY(GameUtilites.newVelictyYFromAngle(lastDegree, 3));
+        setVelX(GameUtilites.newVelictyXFromAngle(lastDegree, speed));
+        setVelY(GameUtilites.newVelictyYFromAngle(lastDegree, speed));
 
 
  

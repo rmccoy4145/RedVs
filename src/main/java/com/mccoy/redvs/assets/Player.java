@@ -82,7 +82,7 @@ public class Player extends GameObject implements Alive,Collidable{
 
     public void takeDMG() {
         SoundHandler.dmgSound();
-        health -= 10;
+        health -= 25;
     }
     
     public void death() {
