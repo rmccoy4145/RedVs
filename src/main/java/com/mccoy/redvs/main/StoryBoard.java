@@ -7,12 +7,9 @@ package com.mccoy.redvs.main;
 
 import com.mccoy.redvs.scenes.StartMenu;
 import com.mccoy.redvs.scenes.SplashScreen;
-import com.mccoy.redvs.assets.Chaser;
-import com.mccoy.redvs.assets.HUD;
-import com.mccoy.redvs.assets.Player;
 import com.mccoy.redvs.scenes.Scene;
 import com.mccoy.redvs.scenes.Stage1;
-import com.mccoy.redvs.scenes.States;
+import com.mccoy.redvs.scenes.State;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,15 +19,15 @@ import java.util.Map;
  */
 public class StoryBoard {
   
-  private static States state = States.SPLASH_SCREEN;
+  private static State state = State.SPLASH_SCREEN;
   private static boolean sceneRunning = false;
   
-  public Map<States, Scene> scenes = new HashMap<>();
+  public Map<State, Scene> scenes = new HashMap<>();
 
     public StoryBoard() {
-        scenes.put(States.SPLASH_SCREEN, new SplashScreen());
-        scenes.put(States.START_MENU, new StartMenu());
-        scenes.put(States.STAGE_1, new Stage1());
+        scenes.put(State.SPLASH_SCREEN, new SplashScreen());
+        scenes.put(State.START_MENU, new StartMenu());
+        scenes.put(State.STAGE_1, new Stage1());
     }
   
  
@@ -57,7 +54,7 @@ public class StoryBoard {
         return sceneRunning;
     }
     
-    public static void setState(States state) {
+    public static void setState(State state) {
        StoryBoard.state = state;
     }
    

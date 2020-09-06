@@ -69,7 +69,7 @@ Image titleScreen;
         if (!visible) {
 
             StoryBoard.stopScene();
-            StoryBoard.setState(States.START_MENU);
+            StoryBoard.setState(State.START_MENU);
         }
     }
     

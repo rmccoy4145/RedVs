@@ -110,7 +110,7 @@ int wait = 20;
     public void check() {
         if (!visible) {
             StoryBoard.stopScene();
-            StoryBoard.setState(States.STAGE_1);
+            StoryBoard.setState(State.STAGE_1);
         }
     }
     

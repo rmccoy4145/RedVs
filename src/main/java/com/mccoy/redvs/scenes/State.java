@@ -9,7 +9,7 @@ package com.mccoy.redvs.scenes;
  *
  * @author rmccoy
  */
-public enum States {
+public enum State {
     SPLASH_SCREEN, GAME_OVER, START_MENU, STAGE_1;
     
 }
