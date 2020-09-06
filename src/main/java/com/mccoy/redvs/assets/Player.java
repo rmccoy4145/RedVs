@@ -7,7 +7,7 @@ package com.mccoy.redvs.assets;
 
 import com.mccoy.redvs.assets.GameObject;
 import com.mccoy.redvs.assetmovement.BasicGOMovement;
-import com.mccoy.redvs.screens.GameOver;
+import com.mccoy.redvs.scenes.GameOver;
 import com.mccoy.redvs.main.Handler;
 import com.mccoy.redvs.resources.SoundHandler;
 import java.awt.Color;

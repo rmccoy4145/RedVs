@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package com.mccoy.redvs.controllers;
-import com.mccoy.redvs.screens.StartMenu;
+import com.mccoy.redvs.scenes.StartMenu;
 import com.mccoy.redvs.assets.GameObject;
 import java.awt.event.KeyEvent;
 

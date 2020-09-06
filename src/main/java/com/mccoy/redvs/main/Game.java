@@ -24,6 +24,7 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private boolean running = false;
     private Handler handler;
+    private StoryBoard storyBoard = new StoryBoard();
  
     public Game() {
 
@@ -84,10 +85,10 @@ public class Game extends Canvas implements Runnable {
         stop();
     }
     
-    private void tick() { 
-        StoryBoard.start();
+    private void tick() {
+        storyBoard.start();
         handler.tick();
-                handler.cleanUp();
+        handler.cleanUp();
     }
     
     private void render() {

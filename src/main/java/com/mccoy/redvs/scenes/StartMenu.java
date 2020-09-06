@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mccoy.redvs.screens;
+package com.mccoy.redvs.scenes;
 
 import com.mccoy.redvs.assets.GameObject;
 import com.mccoy.redvs.main.Game;
 import com.mccoy.redvs.assets.ID;
+import com.mccoy.redvs.main.Handler;
+import com.mccoy.redvs.main.StoryBoard;
 import com.mccoy.redvs.resources.Resources;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -17,7 +19,7 @@ import java.awt.Image;
  *
  * @author rmccoy
  */
-public class StartMenu extends GameObject{
+public class StartMenu extends GameObject  implements Scene {
 boolean startGameOption;
 boolean exitGameOption;
 boolean proceed = false;
@@ -68,7 +70,9 @@ int wait = 20;
     
     @Override
     public void tick() {
-        if(proceed) visible = false;
+        if (proceed) {
+            visible = false;
+        }
         if(shutDown) System.exit(0);
 //        if(proceed) wait--;
 //        if(wait <= 0) visible = false;
@@ -92,5 +96,23 @@ int wait = 20;
         }
 
     }
+
+    @Override
+    public void start() {
+        if(!StoryBoard.isRunning()) {
+                Handler handler = Handler.getInstance();
+            handler.addObject(this);
+            StoryBoard.startScene();
+        }
+    }
+
+    @Override
+    public void check() {
+        if (!visible) {
+            StoryBoard.stopScene();
+            StoryBoard.setState(States.STAGE_1);
+        }
+    }
+    
     
 }
