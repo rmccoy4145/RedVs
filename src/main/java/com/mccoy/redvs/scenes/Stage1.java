@@ -10,6 +10,7 @@ import com.mccoy.redvs.assets.HUD;
 import com.mccoy.redvs.assets.Player;
 import com.mccoy.redvs.main.Handler;
 import com.mccoy.redvs.main.StoryBoard;
+import com.mccoy.redvs.resources.SoundHandler;
 
 /**
  *
@@ -17,7 +18,9 @@ import com.mccoy.redvs.main.StoryBoard;
  */
 public class Stage1 implements Scene {
 
+    
     public Stage1() {
+        SoundHandler sh = new SoundHandler();
     }
 
     @Override
@@ -32,7 +35,7 @@ public class Stage1 implements Scene {
             handler.addObject(new Chaser(250, 350, player));
             handler.addObject(new Chaser(420, 400, player));
             handler.addObject(new Chaser(280, 280, player));
-            handler.addObject(new HUD( player));
+            handler.addObject(new HUD(player));
             StoryBoard.startScene();
         }
     }
@@ -40,6 +43,10 @@ public class Stage1 implements Scene {
     @Override
     public void check() {
         //need to implement
+        Handler handler = Handler.getInstance();
+        if(handler.objects.size() <= 2) {
+            handler.addObject(new Winner());
+        }
     }
  
     

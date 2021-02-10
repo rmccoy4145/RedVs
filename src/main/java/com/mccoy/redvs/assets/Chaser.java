@@ -22,7 +22,7 @@ public class Chaser extends GameObject implements Enemy, Alive, Collidable{
     Player player;
     Handler handler;
     int wait = 300;
-    int health = 50;
+    int health = 30;
     protected Random rn = new Random();
     int followMechanic = 50;
     int followCoolDown = rn.nextInt(200 - 50 + 1) + 50;
@@ -71,7 +71,7 @@ public class Chaser extends GameObject implements Enemy, Alive, Collidable{
     
     public void takeDMG() {
         health += -10;
-        System.out.println("Chaser health: " + health);
+        //System.out.println("Chaser health: " + health);
     }
 
     public void death() {
@@ -101,7 +101,7 @@ public class Chaser extends GameObject implements Enemy, Alive, Collidable{
         if(followCoolDown <= 0) {
             followMechanic = 200;
             followCoolDown = rn.nextInt(600 - 200 + 1) + 200;
-            System.out.println("followCoolDown: " + followCoolDown);
+            //System.out.println("followCoolDown: " + followCoolDown);
         }
         followCoolDown--;
         followMechanic--;

@@ -24,26 +24,14 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  *
  * @author rmccoy
  */
-public class SoundHandler implements LineListener, Runnable {
+public class SoundHandler implements LineListener {
 
-    private static Resources resources = Resources.getInstance();
-    private boolean running = false;
-    private Thread thread;
-    private static Clip damage = preLoad(resources.DMG_SOUND);
-     private static Clip death = preLoad(resources.DEATH_SOUND);
+    private static final Resources resources = Resources.getInstance();
+    private static final Clip damage = preLoad(resources.DMG_SOUND);
+    private static final Clip death = preLoad(resources.DEATH_SOUND);
 
     public SoundHandler() {
-        this.start();
 
-    }
-
-    public void start() {
-        if (running) {
-            return;
-        }
-        this.thread = new Thread(this);
-        this.running = true;
-        this.thread.start();
     }
 
     public static void dmgSound() {
@@ -64,10 +52,10 @@ public class SoundHandler implements LineListener, Runnable {
         LineEvent.Type type = event.getType();
 
         if (type == LineEvent.Type.START) {
-            System.out.println("Playback started.");
+            //System.out.println("Playback started.");
 
         } else if (type == LineEvent.Type.STOP) {
-            System.out.println("Playback completed.");
+            //System.out.println("Playback completed.");
         }
     }
 
@@ -91,8 +79,4 @@ public class SoundHandler implements LineListener, Runnable {
 
     }
 
-    @Override
-    public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

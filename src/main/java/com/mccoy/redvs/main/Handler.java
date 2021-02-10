@@ -55,9 +55,9 @@ public class Handler {
             GameObject next = iterator.next();
             if (!next.visible) {
 
-                System.out.println("removing:" + next.id.toString());
+                //System.out.println("removing:" + next.id.toString());
                 iterator.remove();
-                System.out.println("Container Size:" + objects.size());
+                //System.out.println("Container Size:" + objects.size());
             }
 
         }

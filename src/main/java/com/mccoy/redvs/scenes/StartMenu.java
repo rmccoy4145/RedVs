@@ -20,25 +20,25 @@ import java.awt.Image;
  * @author rmccoy
  */
 public class StartMenu extends GameObject  implements Scene {
-boolean startGameOption;
+boolean startGameOption = true;
 boolean exitGameOption;
 boolean proceed = false;
 boolean shutDown = false;
-private Resources resources;
+private final Resources resources;
 Image titleScreen;
 int wait = 20;
 
     public StartMenu() {
         super(0, 0, ID.MENU);
+        this.resources = Resources.getInstance();
+        this.titleScreen = resources.titleImage;
     }
 
     public void startGame() {
         startGameOption = true;
         exitGameOption = false;
-                height = Game.HEIGHT;
+        height = Game.HEIGHT;
         width = Game.WIDTH;
-        resources = Resources.getInstance();
-        titleScreen = resources.titleImage;
     }
     
     public void exitGame() {
@@ -82,17 +82,22 @@ int wait = 20;
     @Override
     public void render(Graphics g) {
         g.clearRect(x, y, width, height);
-        g.drawImage(titleScreen, x, y, null);
 
         if (startGameOption) {
             g.drawImage(titleScreen, x, y, null);
             g.setColor(Color.GREEN);
             g.drawString("Start Game", 290, 345);
+            g.setColor(Color.GRAY);
+            g.drawString("Pess SpaceBar to select", 252, 380);
+            g.drawString("Up/Down arrows change option", 225, 392);
         }
         if (exitGameOption) {
             g.drawImage(titleScreen, x, y, null);
             g.setColor(Color.RED);
             g.drawString("Exit Game", 290, 345);
+            g.setColor(Color.GRAY);
+            g.drawString("Pess SpaceBar to select", 252, 380);
+            g.drawString("Up/Down arrows change option", 225, 392);
         }
 
     }

@@ -16,10 +16,10 @@ import java.awt.Graphics;
  *
  * @author rmccoy
  */
-public class GameOver extends GameObject  implements Scene {
+public class Winner extends GameObject  implements Scene {
 
-    public GameOver() {
-        super(290, 200, ID.GAMEOVER);
+    public Winner() {
+        super(290, 200, ID.WINNER);
     }
 
     
@@ -30,8 +30,8 @@ public class GameOver extends GameObject  implements Scene {
 
     @Override
     public void render(Graphics g) {
-                   g.setColor(Color.RED);
-            g.drawString("GAMEOVER", x, y);
+                   g.setColor(Color.GREEN);
+            g.drawString("WINNER", x, y);
     }
 
     @Override

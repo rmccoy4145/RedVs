@@ -18,7 +18,8 @@ public enum ID {
     PLAYER_ATACK,
     HUD,
     GAMEOVER,
-    PROJECTILE;
+    PROJECTILE,
+    WINNER;
     
     
 }

@@ -10,6 +10,7 @@ import com.mccoy.redvs.scenes.SplashScreen;
 import com.mccoy.redvs.scenes.Scene;
 import com.mccoy.redvs.scenes.Stage1;
 import com.mccoy.redvs.scenes.State;
+import com.mccoy.redvs.scenes.Winner;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ import java.util.Map;
  */
 public class StoryBoard {
   
-  private static State state = State.SPLASH_SCREEN;
+  private static State state = State.START_MENU;
   private static boolean sceneRunning = false;
   
   public Map<State, Scene> scenes = new HashMap<>();
@@ -38,7 +39,7 @@ public class StoryBoard {
         currentScene.start();
         }
         currentScene.check();
-        System.out.println(String.format("Current Game State: %s", StoryBoard.state.toString()));
+        //System.out.println(String.format("Current Game State: %s", StoryBoard.state.toString()));
         
     }
     
