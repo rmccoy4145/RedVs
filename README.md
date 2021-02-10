@@ -1,5 +1,5 @@
 # RedVs
-A Simple retro game built in Java swing. 
+A Simple retro game built in Java AWT. 
 
 #Objective
 You are the white square, dodge and destroy all the red squares.
