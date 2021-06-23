@@ -1,7 +1,7 @@
 # RedVs
 A Simple retro game built in Java AWT. 
 
-![Showcase](https://drive.google.com/uc?id=1x_0t-pecStuUgUKz77oT3rfd1TXQrdt5)
+![Showcase](https://github.com/rmccoy4145/rmccoy4145/blob/main/images/Redvs_Showcase.gif?raw=true)
 
 #Objective
 You are the white square, dodge and destroy all the red squares. In the HUD at the bottom left of the screen there are two bars; top for health bottom is attack cooldown.
